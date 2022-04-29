@@ -1,5 +1,8 @@
 package com.articreep.surfaces;
 
+import com.articreep.surfaces.surfaces.SlipperySurface;
+import com.articreep.surfaces.surfaces.Surface;
+import com.articreep.surfaces.surfaces.SurfaceDirection;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
