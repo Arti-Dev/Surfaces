@@ -13,7 +13,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 
-public abstract class Surface extends BukkitRunnable {
+public abstract class Surface {
     Block block;
     BlockFace face;
     ArrayList<Location> corners = new ArrayList<>();
@@ -21,6 +21,7 @@ public abstract class Surface extends BukkitRunnable {
     Location center;
     Direction changingCoord;
     ArrayList<Direction> remainingDirections;
+    int taskID;
 
     public Surface(Block block, BlockFace face) {
         this.block = block;
@@ -97,6 +98,4 @@ public abstract class Surface extends BukkitRunnable {
             }
         }
     }
-
-    public abstract void run();
 }
