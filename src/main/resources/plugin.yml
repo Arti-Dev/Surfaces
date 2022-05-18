@@ -1,6 +1,10 @@
-name: Main
+name: Surfaces
 version: '${project.version}'
-main: com.articreep.surfaces.surfaces.Main
+main: com.articreep.surfaces.Main
 api-version: 1.18
 authors: [ Arti_Creep ]
 description: Properties that can be applied to block surfaces, causing them to interact differently with other blocks
+commands:
+  surfaceapplier:
+    description: Give yourself a surface applier.
+    usage: /surfaceapplier <item>

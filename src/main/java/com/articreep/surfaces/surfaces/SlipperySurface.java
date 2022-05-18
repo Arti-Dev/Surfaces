@@ -1,22 +1,23 @@
 package com.articreep.surfaces.surfaces;
 
-import com.articreep.surfaces.utils.Directions;
+import com.articreep.surfaces.utils.Direction;
+import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
-
-import java.sql.Array;
-import java.util.ArrayList;
+import org.bukkit.block.BlockFace;
 
 public class SlipperySurface extends Surface {
-    public SlipperySurface(Block block, SurfaceDirection direction) {
-        super(block, direction);
+    public SlipperySurface(Block block, BlockFace face) {
+        super(block, face);
     }
 
     @Override
     public void run() {
-        for (Location l : locations) {
-            l.getWorld().spawnParticle(Particle.SNOWBALL, l, 2, 0.1, 0.1, 0.1);
+        Particle.DustOptions dust = new Particle.DustOptions(Color.RED, 1);
+        for (Location l : particleLocations) {
+            center.getWorld().spawnParticle(Particle.REDSTONE, l, 1, 0, 0, 0, 0, dust);
         }
     }
 }

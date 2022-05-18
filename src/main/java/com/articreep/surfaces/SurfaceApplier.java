@@ -19,7 +19,7 @@ public class SurfaceApplier implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             ItemStack i = new ItemStack(Material.PACKED_ICE);
-            i.addEnchantment(Enchantment.ARROW_INFINITE, 0);
+            i.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
 
             ItemMeta meta = i.getItemMeta();
             meta.setDisplayName("&5Icy Surface Applier");
