@@ -18,7 +18,7 @@ public abstract class Surface extends BukkitRunnable {
     BlockFace face;
     ArrayList<Location> corners = new ArrayList<>();
     ArrayList<Location> particleLocations = new ArrayList<>();
-    LinkedHashMap<Direction, Integer> map = new LinkedHashMap<>();;
+    LinkedHashMap<Direction, Integer> map = new LinkedHashMap<>();
     Location center;
     Direction changingCoord;
     ArrayList<Direction> remainingDirections;
