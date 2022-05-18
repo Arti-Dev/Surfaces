@@ -24,3 +24,5 @@ public class SpecificBlockFace {
   
   public BlockFace getFace() {
     return face;
+  }
+}
