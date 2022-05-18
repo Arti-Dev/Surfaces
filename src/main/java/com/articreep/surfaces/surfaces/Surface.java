@@ -86,7 +86,7 @@ public abstract class Surface extends BukkitRunnable {
             }
 
             double distance = loc1.distance(loc2);
-            double inbetween = 0.1;
+            double inbetween = 0.25;
             Vector vec1 = loc1.toVector();
             Vector vec2 = loc2.toVector();
             Vector vector = vec2.clone().subtract(vec1).normalize().multiply(inbetween);

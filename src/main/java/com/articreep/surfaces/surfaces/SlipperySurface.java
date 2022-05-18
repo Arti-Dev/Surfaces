@@ -15,8 +15,11 @@ public class SlipperySurface extends Surface {
 
     @Override
     public void run() {
-        Particle.DustOptions dust = new Particle.DustOptions(Color.RED, 1);
+        Particle.DustOptions dust = new Particle.DustOptions(Color.WHITE, 1);
         for (Location l : particleLocations) {
+            if (Math.random() < 0.01) {
+                center.getWorld().spawnParticle(Particle.SNOWFLAKE, l, 1, 0, 0, 0, 0);
+            }
             center.getWorld().spawnParticle(Particle.REDSTONE, l, 1, 0, 0, 0, 0, dust);
         }
     }
