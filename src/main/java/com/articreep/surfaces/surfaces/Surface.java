@@ -18,7 +18,6 @@ public abstract class Surface extends BukkitRunnable {
     BlockFace face;
     ArrayList<Location> corners = new ArrayList<>();
     ArrayList<Location> particleLocations = new ArrayList<>();
-    LinkedHashMap<Direction, Integer> map = new LinkedHashMap<>();
     Location center;
     Direction changingCoord;
     ArrayList<Direction> remainingDirections;
@@ -26,7 +25,9 @@ public abstract class Surface extends BukkitRunnable {
     public Surface(Block block, BlockFace face) {
         this.block = block;
         this.face = face;
-
+        
+        // order might not matter, but I feel more comfortable with this
+        LinkedHashMap<Direction, Integer> map = new LinkedHashMap<>();
         map.put(Direction.X, face.getModX());
         map.put(Direction.Y, face.getModY());
         map.put(Direction.Z, face.getModZ());
