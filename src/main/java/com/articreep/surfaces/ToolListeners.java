@@ -29,7 +29,7 @@ public class ToolListeners implements Listener {
                 }
             }
             SlipperySurface obj = new SlipperySurface(e.getBlockAgainst(), face);
-            obj.runTaskTimer(Main.getPlugin(), 0, 3);
+            obj.run();
             p.sendMessage(ChatColor.GREEN + "Surface placed");
         }
     }
