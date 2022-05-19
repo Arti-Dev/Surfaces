@@ -1,6 +1,8 @@
 package com.articreep.surfaces.utils;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -23,6 +25,17 @@ public class Utils {
         item.setItemMeta(meta);
 
         return item;
+    }
+
+    // Get block face between two blocks
+    public static BlockFace computeBlockFace(Block blockAgainst, Block blockPlaced) {
+        for (BlockFace testFace : BlockFace.values()) {
+            if (blockAgainst.getRelative(testFace).equals(blockPlaced)) {
+                if (!testFace.isCartesian()) continue;
+                return testFace;
+            }
+        }
+        return null;
     }
 
 }

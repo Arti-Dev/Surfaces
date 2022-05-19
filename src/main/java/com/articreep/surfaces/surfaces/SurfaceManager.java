@@ -31,4 +31,12 @@ public class SurfaceManager {
         }
         return false;
     }
+
+    public static boolean hasSurface(SpecificBlockFace face) {
+        return storage.containsKey(face);
+    }
+
+    public static Class<?> getSurfaceType(SpecificBlockFace face) {
+        return storage.get(face).getClass();
+    }
 }

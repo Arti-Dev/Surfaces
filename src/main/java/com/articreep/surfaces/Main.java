@@ -7,6 +7,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new ToolListeners(), this);
+        getServer().getPluginManager().registerEvents(new SurfaceListeners(), this);
         getCommand("surfaceapplier").setExecutor(new SurfaceApplier());
         main = this;
     }
