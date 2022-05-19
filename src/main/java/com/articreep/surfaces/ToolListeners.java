@@ -1,6 +1,6 @@
 package com.articreep.surfaces;
 
-import com.articreep.surfaces.surfaces.SlipperySurface;
+import com.articreep.surfaces.surfaces.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
@@ -17,10 +17,12 @@ public class ToolListeners implements Listener {
         Player p = e.getPlayer();
         ItemStack i = p.getInventory().getItemInMainHand();
         if (!i.hasItemMeta()) return;
-        if (i.getItemMeta().getDisplayName().equals(ItemNames.ICE_TOOL.getName())) {
+        Surface surface = null;
+        BlockFace face = null;
+        if (i.getItemMeta().getDisplayName().equals(ItemNames.ICY_TOOL.getName())) {
             p.playSound(p, Sound.BLOCK_POWDER_SNOW_PLACE, 1, 1);
             e.setCancelled(true);
-            BlockFace face = null;
+
             for (BlockFace testFace : BlockFace.values()) {
                 if (e.getBlockAgainst().getRelative(testFace).equals(e.getBlock())) {
                     if (!testFace.isCartesian()) continue;
@@ -28,9 +30,44 @@ public class ToolListeners implements Listener {
                     break;
                 }
             }
-            SlipperySurface obj = new SlipperySurface(e.getBlockAgainst(), face);
-            obj.run();
-            p.sendMessage(ChatColor.GREEN + "Surface placed");
+            surface = new SlipperySurface(e.getBlockAgainst(), face);
+        } else if (i.getItemMeta().getDisplayName().equals(ItemNames.STICKY_TOOL.getName())) {
+            p.playSound(p, Sound.BLOCK_SLIME_BLOCK_PLACE, 1, 1);
+            e.setCancelled(true);
+            for (BlockFace testFace : BlockFace.values()) {
+                if (e.getBlockAgainst().getRelative(testFace).equals(e.getBlock())) {
+                    if (!testFace.isCartesian()) continue;
+                    face = testFace;
+                    break;
+                }
+            }
+            surface = new StickySurface(e.getBlockAgainst(), face);
+        } else if (i.getItemMeta().getDisplayName().equals(ItemNames.REMOVE_TOOL.getName())) {
+            p.playSound(p, Sound.BLOCK_SMOKER_SMOKE, 1, 1);
+            e.setCancelled(true);
+            for (BlockFace testFace : BlockFace.values()) {
+                if (e.getBlockAgainst().getRelative(testFace).equals(e.getBlock())) {
+                    if (!testFace.isCartesian()) continue;
+                    face = testFace;
+                    break;
+                }
+            }
+            if (SurfaceManager.removeSurface(new SpecificBlockFace(e.getBlockAgainst(), face))) {
+                p.sendMessage(ChatColor.GREEN + "Surface removed");
+
+            } else {
+                p.sendMessage(ChatColor.RED + "There isn't a surface here!");
+            }
+            return;
+        } else {
+            return;
         }
+        if (SurfaceManager.addSurface(new SpecificBlockFace(e.getBlockAgainst(), face), surface)) {
+            p.sendMessage(ChatColor.GREEN + "Surface placed");
+        } else {
+            p.sendMessage(ChatColor.RED + "Something went wrong! Does this surface already have the same type?");
+        }
+
+
     }
 }

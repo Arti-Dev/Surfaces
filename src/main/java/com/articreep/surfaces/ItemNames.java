@@ -1,8 +1,11 @@
 package com.articreep.surfaces;
 
+import org.bukkit.ChatColor;
+
 public enum ItemNames {
 
-    ICE_TOOL("&5Icy Surface Applier");
+    ICY_TOOL(ChatColor.LIGHT_PURPLE + "Icy Surface Applier"), STICKY_TOOL(ChatColor.LIGHT_PURPLE + "Sticky Surface Applier"),
+    REMOVE_TOOL(ChatColor.LIGHT_PURPLE + "Surface Remover");
 
     private final String name;
 

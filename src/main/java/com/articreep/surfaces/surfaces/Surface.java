@@ -1,6 +1,7 @@
 package com.articreep.surfaces.surfaces;
 
 import com.articreep.surfaces.utils.Direction;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -98,4 +99,11 @@ public abstract class Surface {
             }
         }
     }
+
+    public void stopParticles() {
+        if (taskID == 0) return;
+        Bukkit.getServer().getScheduler().cancelTask(taskID);
+    }
+
+    protected abstract void displayParticles();
 }
