@@ -13,10 +13,8 @@ public class StickySurface extends Surface{
     public StickySurface(Block block, BlockFace face) {
         super(block, face);
     }
-
-    @Override
-    public void displayParticles() {
-        Particle.DustOptions dust = new Particle.DustOptions(Color.LIME, 1);
+    Particle.DustOptions dust = new Particle.DustOptions(Color.LIME, 1);
+    public void displayEdgeParticles() {
 
         BukkitTask task = new BukkitRunnable() {
             @Override
@@ -29,6 +27,22 @@ public class StickySurface extends Surface{
                 }
             }
         }.runTaskTimer(Main.getPlugin(), 0, 3);
+        taskID = task.getTaskId();
+    }
+
+    public void displayParticles() {
+        BukkitTask task = new BukkitRunnable() {
+            @Override
+            public void run() {
+                Location loc = corners.get(0).clone();
+                loc.add(remainingDirections.get(0).getVector().multiply(Math.random()));
+                loc.add(remainingDirections.get(1).getVector().multiply(Math.random()));
+                if (Math.random() < 0.05) {
+                    loc.getWorld().spawnParticle(Particle.SLIME, loc, 1, 0, 0, 0, 0);
+                }
+                loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 1, 0, 0, 0, 0, dust);
+            }
+        }.runTaskTimer(Main.getPlugin(), 0, 1);
         taskID = task.getTaskId();
     }
 
